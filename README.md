@@ -1,125 +1,131 @@
 # 📖 Manuscript Editor — AI Agent
-### Built for Romance & Drama novel editing | Portfolio project
+
+> An AI-powered editorial agent for fiction writers preparing novels for publication. Built as a real-world tool for editing a 73-chapter, 700+ page Romance/Drama novel across 16 planned titles.
+
+![Python](https://img.shields.io/badge/Python-3.14-blue) ![Streamlit](https://img.shields.io/badge/Streamlit-1.35-red) ![AI](https://img.shields.io/badge/AI-Claude%20%7C%20ChatGPT%20%7C%20Gemini-green) ![Status](https://img.shields.io/badge/Status-v1%20Working-brightgreen)
 
 ---
 
-## What this app does
+## The Problem
 
-This is an AI-powered manuscript editor built with Python and multiple AI providers (Claude, ChatGPT, Gemini).
-You upload or paste a chapter from your novel, and the AI gives you detailed editorial
-feedback across four dimensions:
+Professional manuscript editing costs $0.01–0.05 per word — for a 200,000 word novel that's $2,000–$10,000 per title. For an author with 16 novels to publish, this is prohibitive. Existing AI tools treat every chapter in isolation, missing cross-chapter continuity issues that a real editor would catch.
 
-- **Grammar & Style** — prose clarity, sentence rhythm, word choice
-- **Plot Consistency** — logical coherence, timeline, continuity
-- **Character Voice** — distinct personalities, authentic dialogue
-- **Pacing & Structure** — romantic tension, dramatic beats, momentum
+## The Solution
 
-You can track progress across all 73 chapters, export feedback as Word or PDF,
-and compare original text side-by-side with editorial notes.
+An AI editorial agent that reads your manuscript and returns structured, actionable feedback — not generic writing advice, but specific notes tied to your actual text, your characters, and your story.
 
 ---
 
-## How to run this app (step by step, no coding needed)
+## Features (v1)
 
-### Step 1 — Install Python
-1. Go to https://www.python.org/downloads/
-2. Click the big yellow "Download Python" button
-3. Run the installer — on Windows, tick **"Add Python to PATH"** before clicking Install
+- **Multi-provider AI** — switch between Claude, ChatGPT, and Gemini from the sidebar
+- **Full manuscript upload** — upload `.txt` or `.docx` files, or paste text directly
+- **4-dimension editorial feedback** — Line Edits & Prose, Scene Structure, Character & Dialogue, Emotional Impact
+- **Scores + suggested rewrites** — every section includes a score out of 10 and a concrete rewrite example from your actual text
+- **Chapter history tracker** — tracks all chapters analysed with average scores across the novel
+- **Export as Word or PDF** — download editorial notes in a format you can work from
+- **Side-by-side compare** — original manuscript next to editorial notes
+- **API key persistence** — keys stored in `.env` file, never re-enter them
 
-### Step 2 — Get your Anthropic API key
-1. Go to https://console.anthropic.com
-2. Sign up or log in
-3. Click **"API Keys"** in the left menu → **"Create Key"**
-4. Copy the key (starts with `sk-ant-...`) — save it somewhere safe
+---
 
-### Step 3 — Download this app
-1. Save the files (`app.py` and `requirements.txt`) into a folder on your computer
-   e.g. a folder called `manuscript-editor` on your Desktop
+## Roadmap (v2)
 
-### Step 4 — Open Terminal / Command Prompt
-- **Mac**: Press Cmd+Space, type "Terminal", press Enter
-- **Windows**: Press the Windows key, type "cmd", press Enter
+See [Issues](https://github.com/nilanjana281/manuscript-editor/issues) for the full backlog. Key features planned:
 
-### Step 5 — Navigate to your folder
-Type this and press Enter (replace with your actual folder path):
-```
-cd Desktop/manuscript-editor
-```
+- [ ] **Novel map** — auto-extract characters, timeline, plot arcs on first upload
+- [ ] **Full manuscript chunking** — auto-split by chapter, process sequentially
+- [ ] **Cross-chapter continuity checks** — catch character inconsistencies, plot holes, timeline errors across the whole novel
+- [ ] **Structured JSON output** — chapter, line number, issue type, original text, suggestion (token-efficient)
+- [ ] **Highlighted manuscript view** — render flagged passages like Copilot track changes
+- [ ] **Persistent memory** — agent remembers previous editing sessions and builds on them
+- [ ] **Chat mode** — ask questions about your specific novel ("what's wrong with the antagonist's arc in act 2?")
+- [ ] **Multi-novel management** — manage 16 titles in one place
 
-### Step 6 — Create a virtual environment (recommended)
-```
-python3 -m venv venv
-```
-This creates an isolated environment for the app's dependencies.
+---
 
-### Step 7 — Activate the virtual environment
-- **Mac/Linux**: `source venv/bin/activate`
-- **Windows**: `venv\Scripts\activate`
+## Tech Stack
 
-### Step 8 — Install dependencies (one time only)
-```
-pip install -r requirements.txt
-```
-Wait for it to finish (takes 1-2 minutes).
+| Layer | Technology |
+|---|---|
+| Frontend & app framework | Streamlit |
+| Language | Python 3.14 |
+| AI providers | Anthropic Claude, OpenAI GPT-4o, Google Gemini |
+| Document export | python-docx, ReportLab |
+| Environment management | python-dotenv |
+| Version control | Git / GitHub |
 
-### Step 9 — Run the app
-```
+---
+
+## Getting Started
+
+### Prerequisites
+- Python 3.8+
+- An API key from one of: [Anthropic](https://console.anthropic.com), [OpenAI](https://platform.openai.com/api-keys), or [Google AI Studio](https://aistudio.google.com)
+
+### Installation
+
+```bash
+git clone https://github.com/nilanjana281/manuscript-editor.git
+cd manuscript-editor
+pip3 install -r requirements.txt
 streamlit run app.py
 ```
-Your browser will automatically open at `http://localhost:8501`
 
-**Note**: Always activate the virtual environment (`source venv/bin/activate`) before running the app to ensure you're using the correct dependencies.
+### API Key Setup
 
-### Step 10 — Use the app
-1. Paste your API key in the **sidebar** (left panel)
-2. Add your character names and novel details
-3. Go to the **Editor** tab
-4. Paste a chapter or upload a `.txt` / `.docx` file
-5. Click **Analyse manuscript →**
-6. Download feedback as Word or PDF
+Create a `.env` file:
+
+```
+ANTHROPIC_API_KEY=sk-ant-...
+OPENAI_API_KEY=sk-...
+GEMINI_API_KEY=AIza...
+```
+
+Only fill in the one you want to use. Gemini has a free tier.
 
 ---
 
-## How to share this app online (for your PM portfolio)
+## How It Works
 
-### Option A — Streamlit Community Cloud (FREE, easiest)
-1. Create a free account at https://github.com and upload your files
-2. Go to https://share.streamlit.io
-3. Sign in with GitHub → click "New app" → select your repo → set `app.py` as the main file
-4. Click **Deploy** — you get a public URL like `yourname.streamlit.app`
-5. Add the link to your LinkedIn / CV / portfolio
-
-### Option B — Put the API key in Streamlit Secrets (so users don't need one)
-In Streamlit Cloud, go to App Settings → Secrets and add:
 ```
-ANTHROPIC_API_KEY = "sk-ant-your-key-here"
+Your manuscript
+      ↓
+Streamlit UI (upload / paste)
+      ↓
+Python builds editorial prompt
+      ↓
+AI provider (Claude / ChatGPT / Gemini)
+      ↓
+Structured JSON response
+      ↓
+Rendered feedback with scores + rewrites
+      ↓
+Export as Word / PDF
 ```
-Then in app.py, the app will automatically pick it up.
 
 ---
 
-## For your PM portfolio — talking points
+## Project Context
 
-- **Problem solved**: Manual manuscript editing is slow and expensive; this automates
-  detailed editorial feedback in seconds
-- **Tech stack**: Python, Streamlit, Anthropic Claude API, OpenAI ChatGPT API, Google Gemini API, ReportLab, python-docx
-- **Key features**: Multi-mode AI analysis, chapter progress tracker, PDF/Word export,
-  side-by-side compare view
-- **Scale**: Designed for 73-chapter, 700+ page novels with per-chapter session tracking
-- **User-centred design**: Built around a real use case (the author's own novel)
+This is a real tool built for a real problem — not a hackathon demo. The author has a completed novel (73 chapters, 203,000 words) ready for editing and 15 more planned for publication.
+
+Built by [Nilanjana Chatterjee](https://nilanjana281.github.io/github.io/) — Senior Product Manager specialising in AI-powered products.
+
+---
+
+## Contributing
+
+Issues and PRs welcome. See [Issues](https://github.com/nilanjana281/manuscript-editor/issues) for the current backlog.
 
 ---
 
 ## Troubleshooting
 
-**"streamlit: command not found"**
-→ Try: `python -m streamlit run app.py`
+**`streamlit: command not found`** → Use `python3 -m streamlit run app.py`
 
-**"ModuleNotFoundError"**
-→ Ensure you're in the virtual environment: `source venv/bin/activate` (Mac/Linux) or `venv\Scripts\activate` (Windows), then run `pip install -r requirements.txt` again
+**`ModuleNotFoundError`** → Run `pip3 install -r requirements.txt`
 
-**"AuthenticationError"**
-→ Your API key is wrong — double-check it in the sidebar
+**`429 quota exceeded` on Gemini** → Link billing account at console.cloud.google.com (free tier still applies)
 
-**App runs but AI gives weird output**
-→ Try a shorter excerpt (under 2,000 words works best)
+**`Invalid API key`** → Check `.env` — no spaces around `=`, no quotes around the key
